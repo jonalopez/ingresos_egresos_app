@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
 
 @Component({
   selector: 'app-estadistica',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class EstadisticaComponent implements OnInit {
+  
+  ingresos: number;
+  egresos: number;
 
-  constructor() { }
+  cuantosIngresos: number;
+  cuantosEgresos: number;
+
+  constructor( private store: Store<AppState> ) { }
 
   ngOnInit() {
   }

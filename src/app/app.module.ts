@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // NGRX
 import { StoreModule } from '@ngrx/store'; // Despues de tener listo el archivo app.reducer.ts que se crea en la carpeta app
@@ -44,6 +44,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,

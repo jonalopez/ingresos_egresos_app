@@ -9,15 +9,18 @@ import { User } from './user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
-import { SetUserAction } from './auth.actions';
+import { SetUserAction, UnSetUserAction } from './auth.actions';
 import { Subscription } from 'rxjs';
 
   @Injectable({
     providedIn: 'root'
   })
   export class AuthService {
-  
+
+  // tslint:disable-next-line:max-line-length
   private userSubscription: Subscription = new Subscription(); // Se inicializa para que no muestre erorres si no hay subscripciones activas.
+
+  private usuario: User; // Para obtener el uid y asociarlo a ingreso-egreso.service.ts
 
   // Para iniciar el uso del store se declara en el constructor el store de tipo Store, el cual debe ser importando de
   // '@ngrx/store' ademas es de tipo AppState el cual debe ser importado de app.reducer
@@ -41,9 +44,10 @@ import { Subscription } from 'rxjs';
                                             const newUser = new User( usuarioObj );
                                             // Una vez se autentique el usuario lo va a almacenar en el store
                                             this.store.dispatch( new SetUserAction( newUser ));
-                                            console.log(newUser);
+                                            this.usuario = newUser;
                                         } );
       } else {
+          this.usuario = null;
           this.userSubscription.unsubscribe();
       }
 
@@ -105,6 +109,7 @@ import { Subscription } from 'rxjs';
   logout() {
 
     this.router.navigate(['/login']);
+    this.store.dispatch( new UnSetUserAction() );
     this.afAuth.auth.signOut();
   }
 
@@ -120,6 +125,11 @@ import { Subscription } from 'rxjs';
             return fbUser != null;
           } )
     );
+  }
+
+  // Devuelve el valor por referencia
+  getUsuario() {
+    return { ...this.usuario }; // Extrae todo lo que tiene el usuario y manda solo las propiedades con ...
   }
 
 }

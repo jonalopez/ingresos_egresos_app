@@ -9,11 +9,13 @@ import * as fromUI from './shared/ui.reducer'; // Se necesita el reducer
 import * as fromAuth from './auth/auth.reducer'; // Se necesita el reducer
 import { ActionReducerMap } from '@ngrx/store'; // Permite fusionar varios reducer en uno solo, para que la aplicacion
                                                 // conozca como estan trabajando cada una de las partes que va a tener el store
+import * as fromIngresoEgreso from './ingreso-egreso/ingreso-egreso.reducer'; // Se necesita el reducer
 
 // Se exporta el estado completo de la aplicacion
 export interface AppState {
      ui: fromUI.State; // Este esta relacionado con el ui.reducer que contiene el isloading
-     user: fromAuth.AuthState; // Este esta relacionado con el auth.reducer de la carpeta auth
+     auth: fromAuth.AuthState; // Este esta relacionado con el auth.reducer de la carpeta auth
+     ingresoEgreso: fromIngresoEgreso.IngresoEgresoState;
 }
 
 // Configuracion global de los reducer
@@ -21,5 +23,6 @@ export interface AppState {
 // Es igual (=) porque esta dentro de un objeto
 export const appReducers: ActionReducerMap<AppState> = {
     ui: fromUI.uiReducer,
-    user: fromAuth.authReducer // Aqui va el reducer
+    auth: fromAuth.authReducer, // Aqui va el reducer
+    ingresoEgreso: fromIngresoEgreso.ingresoEgresoReducer // Aqui va el reducer
 };

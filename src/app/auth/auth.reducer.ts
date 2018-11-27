@@ -3,9 +3,9 @@
 import * as fromAuth from './auth.actions';
 import { User } from './user.model';
 
-// Se exporta la accion que quiero implmentar
+// Aqui tiene que ir la palabra State
 export interface AuthState {
-    user: User; // Aqui se puede declarar de cualquier tipo (boolean, numer, string) o del modelo previamente creado que contiene la 
+    user: User; // Aqui se puede declarar de cualquier tipo (boolean, numer, string) o del modelo previamente creado que contiene la
                 // declaracion de todos los campos
 }
 
@@ -23,7 +23,13 @@ export function authReducer( state = initState, action: fromAuth.acciones ): Aut
         case fromAuth.SET_USER:
             return{
                 // tslint:disable-next-line:max-line-length
-                user: { ... action.user } // Se devuelve con ... toma cada una de las propiedades del objeto user y se hacen pares de valores y esto devuelve algo de tipo AuthState 
+                user: { ... action.user } // Se devuelve con ... toma cada una de las propiedades del objeto user y se hacen pares de valores y esto devuelve algo de tipo AuthState
+            };
+
+        case fromAuth.UNSET_USER:
+            return{
+                // tslint:disable-next-line:max-line-length
+                user: null
             };
 
         default:
