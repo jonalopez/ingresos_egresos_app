@@ -5,7 +5,7 @@
 export class IngresoEgreso {
 
     public descripcion: string;
-    public monto: string;
+    public monto: number;
     public tipo: string;
     public uid?: string;
 

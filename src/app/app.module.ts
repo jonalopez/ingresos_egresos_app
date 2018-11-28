@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Graficas
+import { ChartsModule } from 'ng2-charts';
+
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,6 +51,7 @@ import { environment } from '../environments/environment';
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    ChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
     StoreModule.forRoot( appReducers ), // Se agrega sin corchetes en este caso
     StoreDevtoolsModule.instrument({
